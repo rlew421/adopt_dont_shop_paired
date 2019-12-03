@@ -64,3 +64,8 @@ fred = fantastic_beasts.pets.create(image: "https://townsquare.media/site/723/fi
                     approximate_age: 5700,
                     sex: 'Male',
                     adoptable?: false)
+
+# Reviews
+review_1 = boulder_bulldog_rescue.reviews.create(title: "The cutest bulldogs!", content: "This shelter takes in a lot of surrenders, and they take care of their bulldogs well!", rating: 5)
+review_2 = boulder_bulldog_rescue.reviews.create(title: "Bulldog Experts", content: "They know how to take care of this breed.", rating: 4)
+review_3 = fantastic_beasts.reviews.create(title: "Interesting...", content: "They have a wide variety of pets, but we're not sure if they're all safe or legal to own.", rating: 2)
