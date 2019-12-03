@@ -1,0 +1,36 @@
+<center>
+  <section>
+    <% if @shelter %>
+      <h1>All Pets at <%= @shelter.name %></h1>
+    <% else %>
+      <h1>All Pets</h1>
+    <% end %>
+
+    <% @pets.each do |pet| %>
+      <section class = "pets">
+        <section id= 'pet-<%=pet.id%>'>
+          <img src= <%= pet.image %>>
+          <% if @shelter %>
+            <p>Name: <%= link_to "#{pet.name}", "/shelters/#{pet.shelter.id}/pets/#{pet.id}" %></p>
+          <% else %>
+            <p>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+          <% end %>
+          <p>Age: <%= pet.approximate_age %></p>
+          <p>Sex: <%= pet.sex %></p>
+          <% if @shelter %>
+            <p><%= link_to "Edit", "/shelters/#{pet.shelter.id}/pets/#{pet.id}/edit" %>  <%= pet.name %></p>
+          <% else %>
+            <p>Current Shelter: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></p>
+            <p><%= link_to "Edit", "/pets/#{pet.id}/edit" %> <%= pet.name %></p>
+          <% end %>
+          <p><%= link_to "Delete", "/pets/#{pet.id}", method: :delete %> <%= pet.name %></p>
+        </section>
+      </section>
+    <% end %>
+
+    <% if @shelter %>
+      <p><%= "Number of Pets at #{@shelter.name}: #{@shelter.pet_count}" %></p>
+      <%= link_to 'Add New Adoptable Pet', "/shelters/#{@shelter.id}/pets/new" %>
+    <% end %>
+  </section>
+</center>
