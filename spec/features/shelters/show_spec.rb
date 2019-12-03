@@ -4,9 +4,9 @@ RSpec.describe "shelter show page" do
   describe "as a visitor" do
     before(:each) do
       @shelter_1 = Shelter.create(name: "Gimme Shelter", address: "5218 Rolling Stones Avenue", city: "Denver", state: "CO", zip: 80203)
-      @review_1 = Review.create!(title: "Would Recommend", rating: 4, content: "Good service, easy application process!")
-      @review_2 = Review.create!(title: "Alright", rating: 3, content: "Nothing special, but they had an ok selection of pets and were quite clean.")
-      @review_3 = Review.create!(title: "Awesome!", rating: 4, content: "They helped us adopt the perfect dog!", image: "http://www.westdeertownship.com/wp-content/uploads/2015/11/KIMG1537.jpg")
+      @review_1 = @shelter_1.reviews.create!(title: "Would Recommend", rating: 4, content: "Good service, easy application process!")
+      @review_2 = @shelter_1.reviews.create!(title: "Alright", rating: 3, content: "Nothing special, but they had an ok selection of pets and were quite clean.")
+      @review_3 = @shelter_1.reviews.create!(title: "Awesome!", rating: 4, content: "They helped us adopt the perfect dog!", image: "http://www.westdeertownship.com/wp-content/uploads/2015/11/KIMG1537.jpg")
 
       visit "/shelters/#{@shelter_1.id}"
     end
