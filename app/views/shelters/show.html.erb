@@ -8,4 +8,16 @@
     <p><%= link_to "Edit #{@shelter.name}", "/shelters/#{@shelter.id}/edit" %></p>
     <p><%= link_to "Delete #{@shelter.name}", "/shelters/#{@shelter.id}", method: :delete %></p>
   </section>
+
+  <h2>Reviews for <%= @shelter.name %></h2>
+  <% @shelter.reviews.each do |review| %>
+    <section id="review-<%= review.id %>">
+      <%= review.title %>
+      <%= review.rating %>
+      <%= review.content %>
+      <% if review.image %>
+        <img src= <%= review.image %>
+      <% end %>
+    </section>
+  <% end %>
 </center>
