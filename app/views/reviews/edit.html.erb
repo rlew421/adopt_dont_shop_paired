@@ -1,7 +1,7 @@
 <h1 align= "center">Edit a Review for <%= @review.shelter.name %></h1>
 
 <center>
-  <%= form_tag "/shelters/#{@review.shelter.id}", method: :patch do %>
+  <%= form_tag "/shelters/#{@review.shelter.id}/reviews/#{@review.id}", method: :patch do %>
     <%= label_tag :title %>
     <%= text_field_tag :title, "#{@review.title}" %>
 
