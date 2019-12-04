@@ -18,6 +18,12 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:review_id])
   end
 
+  def update
+    review = Review.find(params[:review_id])
+    review.update(review_params)
+    redirect_to "/shelters/#{review.shelter.id}"
+  end
+
   private
 
   def review_params
