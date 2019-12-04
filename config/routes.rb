@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'shelters#index'
 
+  patch '/shelters/:shelter_id', to: 'reviews#update'
   get '/shelters', to: 'shelters#index'
   post '/shelters', to: 'shelters#create'
   get '/shelters/new', to: 'shelters#new'
@@ -18,8 +19,10 @@ Rails.application.routes.draw do
   get '/shelters/:shelter_id/pets/new', to: 'pets#new'
   get '/shelters/:shelter_id/pets/:id', to: 'pets#show'
   post '/shelters/:shelter_id/pets', to: 'pets#create'
+
   get '/shelters/:shelter_id/pets/:id/edit', to: 'pets#edit'
   get '/shelters/:shelter_id/reviews/new', to: 'reviews#new'
   get '/shelters/:shelter_id/reviews/:review_id/edit', to: 'reviews#edit'
   post '/shelters/:shelter_id', to: 'reviews#create'
+
 end
