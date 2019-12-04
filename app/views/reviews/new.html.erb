@@ -1,0 +1,19 @@
+<h1 align= "center">Add a Review for <%= @shelter.name %></h1>
+
+<center>
+  <%= form_tag "/shelters/#{@shelter.id}" %>
+
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+
+  <%= label_tag :rating %>
+  <%= text_field_tag :rating %>
+
+  <%= label_tag :content %>
+  <%= text_field_tag :content %>
+
+  <%= label_tag :image %>
+  <%= text_field_tag :image %>
+
+  <%= submit_tag "Create Review" %>
+</center>
