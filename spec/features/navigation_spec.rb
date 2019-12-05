@@ -15,5 +15,19 @@ RSpec.describe 'site top navigation bar' do
 
       expect(current_path).to eq('/shelters')
     end
+
+    it "I can see a favorites indicator on all pages" do
+      visit '/shelters'
+
+      within 'nav' do
+        expect(page).to have_content("Favorites: 0")
+      end
+
+      visit '/pets'
+
+      within 'nav' do
+        expect(page).to have_content("Favorites: 0")
+      end
+    end
   end
 end
