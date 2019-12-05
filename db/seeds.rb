@@ -52,13 +52,13 @@ carl = fantastic_beasts.pets.create(image: "https://miro.medium.com/max/2560/1*T
                     sex: 'Male',
                     adoptable?: false)
 
-stitch = fantastic_beasts.pets.create(image: "https://data.whicdn.com/images/67819045/superthumb.jpg?t=1373471970",
+stitch = fantastic_beasts.pets.create(image: "https://imgix.bustle.com/uploads/image/2018/10/3/b32820ab-b6ab-402d-aaec-ef470d63f827-lilo-stitch.jpg?w=1020&h=574&fit=crop&crop=faces&auto=format&q=70",
                     name: 'Stitch',
                     description: "We found him under a truck this morning.",
                     approximate_age: 1,
                     sex: 'Male')
 
-fred = fantastic_beasts.pets.create(image: "https://townsquare.media/site/723/files/2015/04/Pet-Rock-12.jpg?w=980&q=75",
+fred = fantastic_beasts.pets.create(image: "https://images-na.ssl-images-amazon.com/images/I/81qrQKsC85L._SY355_.png",
                     name: 'Fred',
                     description: "Sedentary, sedimentary, and perfectly low-maintenance. Safe to say he won't run away!",
                     approximate_age: 5700,
