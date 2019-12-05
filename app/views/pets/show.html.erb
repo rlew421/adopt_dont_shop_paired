@@ -12,5 +12,6 @@
       <% end %>
     <p><%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %></p>
     <p><%= link_to "Delete #{@pet.name}", "/pets/#{@pet.id}", method: :delete %></p>
+    <p><%= button_to "Add #{@pet.name} to Favorites", "/favorites/#{@pet.id}", method: :patch %></p>
   </section>
 </center>
