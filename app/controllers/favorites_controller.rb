@@ -1,6 +1,9 @@
 class FavoritesController < ApplicationController
   def index
-    
+    things = favorites.contents
+    @favorites = things.map do |pet_id|
+      Pet.find(pet_id)
+    end
   end
 
   def update

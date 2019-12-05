@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "favorites index page" do
-  xit "I see all pets I've favorited along with:
+  it "I see all pets I've favorited along with:
   - a pet's name (links to pets show page
   - a pet's image)" do
 
