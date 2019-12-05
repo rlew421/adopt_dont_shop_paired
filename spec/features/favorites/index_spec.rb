@@ -18,11 +18,11 @@ RSpec.describe "favorites index page" do
                         approximate_age: 2,
                         sex: 'Female')
 
-    pet_3 = shelter_1.pets.create!(image: "https://i.pinimg.com/564x/59/71/31/5971314eb28926a1ccc298396f099189.jpg",
-                        name: 'Pet 2',
+    pet_3 = shelter_1.pets.create!(image: "https://vetstreet.brightspotcdn.com/dims4/default/3407f3b/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2Ffb%2F31%2F032a6aae436a9821acda211044fb%2Fbulldog-ap-rn4myi-645.jpg",
+                        name: 'Pet 3',
                         description: "Pet 2 description",
-                        approximate_age: 2,
-                        sex: 'Female')
+                        approximate_age: 4,
+                        sex: 'Male')
 
     visit "/pets/#{pet_1.id}"
     click_button "Add #{pet_1.name} to Favorites"
@@ -33,10 +33,10 @@ RSpec.describe "favorites index page" do
     visit '/favorites'
 
     expect(page).to have_content(pet_1.name)
-    expect(page).to have_content(pet_1.image)
+    expect(page).to have_css("img[src*='#{pet_1.image}']")
     expect(page).to have_content(pet_2.name)
-    expect(page).to have_content(pet_2.image)
+    expect(page).to have_css("img[src*='#{pet_2.image}']")
     expect(page).to_not have_content(pet_3.name)
-    expect(page).to_not have_content(pet_3.image)
+    expect(page).to_not have_css("img[src*='#{pet_3.image}']")
   end
 end
