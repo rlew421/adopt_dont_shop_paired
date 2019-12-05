@@ -1,5 +1,5 @@
 <h1>Favorited Pets</h1>
-<% @favorites.each do |favorite| %>
+<% @favorited_pets.each do |favorite| %>
   <%= favorite.name %>
-  <%= favorite.image %>
+  <img src= <%= favorite.image %>>
 <% end %>
