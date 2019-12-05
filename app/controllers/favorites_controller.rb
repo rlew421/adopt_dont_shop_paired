@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   def index
-    things = favorites.contents
-    @favorites = things.map do |pet_id|
+    pet_favorites = favorites.contents
+    @favorited_pets = pet_favorites.map do |pet_id|
       Pet.find(pet_id)
     end
   end
