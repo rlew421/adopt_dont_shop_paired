@@ -16,7 +16,7 @@
     <nav class = "topnav">
       <%= link_to "All Shelters", "/shelters"%>
       <%= link_to "All Pets", "/pets"%>
-      Favorites: <%= favorites.total_count %>
+      <%= link_to "Favorites", "/favorites" %>: <%= favorites.total_count %>
     </nav>
     <%= yield %>
   </body>
