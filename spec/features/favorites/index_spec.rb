@@ -39,17 +39,4 @@ RSpec.describe "favorites index page" do
     expect(page).to_not have_content(pet_3.name)
     expect(page).to_not have_css("img[src*='#{pet_3.image}']")
   end
-  it "clicking on the favorites indicator in the navbar of any page directs me to the favorites index" do
-    visit "/pets"
-    click_button "Favorites"
-    expect(current_path).to eq("/favorites")
-
-    visit "/shelters"
-    click_button "Favorites"
-    expect(current_path).to eq("/favorites")
-
-    visit "/shelters/pets"
-    click_button "Favorites"
-    expect(current_path).to eq("/favorites")
-  end
 end
