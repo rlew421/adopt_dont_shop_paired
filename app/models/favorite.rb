@@ -12,4 +12,8 @@ class Favorite
   def add_pet(pet)
     @contents << pet
   end
+
+  def included_in_favorites?(pet_id)
+    contents.include?(pet_id)
+  end
 end
