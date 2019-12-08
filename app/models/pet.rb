@@ -6,6 +6,8 @@ class Pet < ApplicationRecord
                          :description
   validates_inclusion_of :adoptable?, :in => [true, false]
   belongs_to :shelter
+  has_many :application_pets
+  has_many :applications, through: :application_pets
 
   def self.sort_pets_by_status
     Pet.order(adoptable?: :desc)
