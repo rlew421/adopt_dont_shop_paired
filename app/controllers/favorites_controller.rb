@@ -25,4 +25,9 @@ class FavoritesController < ApplicationController
       redirect_to "/favorites"
     end
   end
+
+  def empty
+    session.delete(:favorites)
+    redirect_to '/favorites'
+  end
 end
