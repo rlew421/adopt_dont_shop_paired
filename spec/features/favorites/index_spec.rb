@@ -138,4 +138,43 @@ RSpec.describe "favorites index page" do
 
     expect(page).to have_content("You have no favorited pets.")
   end
+
+  it "I see a link to remove all favorited pets that empties my list of favorited pets" do
+    shelter_1 = Shelter.create!(name: "Denver Dog Shelter", address: "7893 Colfax", city: "Denver", state: "CO", zip: 80209)
+
+    pet_1 = shelter_1.pets.create!(image: "https://i.pinimg.com/564x/59/71/31/5971314eb28926a1ccc298396f099189.jpg",
+                        name: 'Pet 1',
+                        description: "Pet 1 description",
+                        approximate_age: 7,
+                        sex: 'Male')
+
+    pet_2 = shelter_1.pets.create!(image: "https://thumbs-prod.si-cdn.com/wLrciMDDerMdsUZS8GZwduuMvPs=/420x240/filters:focal(274x157:275x158)/https://public-media.si-cdn.com/filer/ca/15/ca15e676-bfa1-4180-ae4b-02797b55c093/gettyimages-511711532_720.jpg",
+                        name: 'Pet 2',
+                        description: "Pet 2 description",
+                        approximate_age: 2,
+                        sex: 'Female')
+
+    visit "/pets/#{pet_1.id}"
+    click_button "Add #{pet_1.name} to Favorites"
+    within 'nav' do
+      expect(page).to have_content("Favorites: 1")
+    end
+
+    visit "/pets/#{pet_2.id}"
+    click_button "Add #{pet_2.name} to Favorites"
+    within 'nav' do
+      expect(page).to have_content("Favorites: 2")
+    end
+
+    visit '/favorites'
+
+    click_link "Remove All Favorited Pets"
+    expect(current_path).to eq('/favorites')
+    expect(page).to_not have_content("#{pet_1.name}")
+    expect(page).to_not have_content("#{pet_2.name}")
+    expect(page).to have_content("You have no favorited pets.")
+    within 'nav' do
+      expect(page).to have_content("Favorites: 0")
+    end
+  end
 end

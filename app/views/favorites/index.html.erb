@@ -8,6 +8,7 @@
       <%= button_to "Remove #{favorite.name} from Favorites", "/favorites/#{favorite.id}", method: :delete %>
     </section>
   <% end %>
+  <%= link_to "Remove All Favorited Pets", "/favorites", method: :delete %>
 <% else %>
   <p>You have no favorited pets.</p>
 <% end %>
