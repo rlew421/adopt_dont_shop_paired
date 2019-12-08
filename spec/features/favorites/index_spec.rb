@@ -113,4 +113,29 @@ RSpec.describe "favorites index page" do
       expect(page).to have_content("Favorites: 0")
     end
   end
+
+  it "I see text saying that I have no favorited pets if I have not added any pets to my favorites list" do
+    shelter_1 = Shelter.create!(name: "Denver Dog Shelter", address: "7893 Colfax", city: "Denver", state: "CO", zip: 80209)
+
+    pet_1 = shelter_1.pets.create!(image: "https://i.pinimg.com/564x/59/71/31/5971314eb28926a1ccc298396f099189.jpg",
+                        name: 'Pet 1',
+                        description: "Pet 1 description",
+                        approximate_age: 7,
+                        sex: 'Male')
+
+    pet_2 = shelter_1.pets.create!(image: "https://thumbs-prod.si-cdn.com/wLrciMDDerMdsUZS8GZwduuMvPs=/420x240/filters:focal(274x157:275x158)/https://public-media.si-cdn.com/filer/ca/15/ca15e676-bfa1-4180-ae4b-02797b55c093/gettyimages-511711532_720.jpg",
+                        name: 'Pet 2',
+                        description: "Pet 2 description",
+                        approximate_age: 2,
+                        sex: 'Female')
+
+    pet_3 = shelter_1.pets.create!(image: "https://vetstreet.brightspotcdn.com/dims4/default/3407f3b/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2Ffb%2F31%2F032a6aae436a9821acda211044fb%2Fbulldog-ap-rn4myi-645.jpg",
+                        name: 'Pet 3',
+                        description: "Pet 2 description",
+                        approximate_age: 4,
+                        sex: 'Male')
+    visit '/favorites'
+
+    expect(page).to have_content("You have no favorited pets.")
+  end
 end

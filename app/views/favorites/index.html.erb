@@ -1,8 +1,13 @@
 <h1>Favorited Pets</h1>
-<% @favorited_pets.each do |favorite| %>
-  <section id= 'favorited_pet-<%=favorite.id%>'>
-    <%= link_to "#{favorite.name}", "/pets/#{favorite.id}" %>
-    <img src= <%= favorite.image %>>
-    <%= button_to "Remove #{favorite.name} from Favorites", "/favorites/#{favorite.id}", method: :delete %>
-  </section>
+
+<% if !@favorited_pets.empty? %>
+  <% @favorited_pets.each do |favorite| %>
+    <section id= 'favorited_pet-<%=favorite.id%>'>
+      <%= link_to "#{favorite.name}", "/pets/#{favorite.id}" %>
+      <img src= <%= favorite.image %>>
+      <%= button_to "Remove #{favorite.name} from Favorites", "/favorites/#{favorite.id}", method: :delete %>
+    </section>
+  <% end %>
+<% else %>
+  <p>You have no favorited pets.</p>
 <% end %>
