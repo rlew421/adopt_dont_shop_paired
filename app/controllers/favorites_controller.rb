@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     pet = Pet.find(params[:pet_id])
-    session[:favorites].delete(pet.id)
+    favorites.remove_pet(pet.id)
     flash[:notice] = "#{pet.name} has been removed from your favorites!"
     if URI(request.referer).path == "/pets/#{pet.id}"
       redirect_to "/pets/#{pet.id}"
