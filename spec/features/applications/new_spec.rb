@@ -44,6 +44,9 @@ RSpec.describe "when I visit my favorites page" do
     visit "/pets/#{pet_2.id}"
     click_button "Add #{pet_2.name} to Favorites"
 
+    visit "/pets/#{pet_3.id}"
+    click_button "Add #{pet_3.name} to Favorites"
+
     visit '/favorites'
 
     click_link "Apply to Adopt Pets"
@@ -53,7 +56,13 @@ RSpec.describe "when I visit my favorites page" do
       check("#{pet_1.name}")
     end
 
-    check(pet_2.id)
+    check(pet_1.name)
+
+    within "#favorite-#{pet_2.id}" do
+      check("#{pet_2.name}")
+    end
+
+    check(pet_2.name)
 
     # within "#pet-#{pet_1.id}" do
     #   expect(page).to have_content(pet_1.name)
@@ -82,13 +91,12 @@ RSpec.describe "when I visit my favorites page" do
 
     expect(page).to have_content "Your application has been submitted for the selected pets!"
     expect(current_path).to eq('/favorites')
-
+    save_and_open_page
     expect(page).to_not have_content(pet_1.name)
     expect(page).to_not have_css("img[src*='#{pet_1.image}']")
     expect(page).to_not have_content(pet_2.name)
     expect(page).to_not have_css("img[src*='#{pet_2.image}']")
     expect(page).to have_content(pet_3.name)
     expect(page).to have_css("img[src*='#{pet_3.image}']")
-
   end
 end
