@@ -1,21 +1,3 @@
-# As a visitor
-# When I have added pets to my favorites list
-# And I visit my favorites page ("/favorites")
-# I see a link for adopting my favorited pets
-# When I click that link I'm taken to a new application form
-# At the top of the form, I can select from the pets of which I've favorited for which I'd like this application to apply towards (can be more than one)
-# When I select one or more pets, and fill in my
-# - Name
-# - Address
-# - City
-# - State
-# - Zip
-# - Phone Number
-# - Description of why I'd make a good home for this/these pet(s)
-# And I click on a button to submit my application
-# I see a flash message indicating my application went through for the pets that were selected
-# And I'm taken back to my favorites page where I no longer see the pets for which I just applied listed as favorites
-
 require 'rails_helper'
 
 RSpec.describe "when I visit my favorites page" do
@@ -59,21 +41,6 @@ RSpec.describe "when I visit my favorites page" do
     within "#favorite-#{pet_2.id}" do
       check("favorites[]")
     end
-
-    # within "#pet-#{pet_1.id}" do
-    #   expect(page).to have_content(pet_1.name)
-    #   expect(page).to have_checked_field('pet_1', checked: true)
-    # end
-    #
-    # within "#pet-#{pet_2.id}" do
-    #   expect(page).to have_content(pet_2.name)
-    #   expect(page).to have_checked_field('pet_2', checked: true)
-    # end
-    #
-    # within "#pet-#{pet_3.id}" do
-    #   expect(page).to have_content(pet_3.name)
-    #   expect(page).to have_unchecked_field('pet_3', unchecked: true)
-    # end
 
     fill_in :name, with: "John Doe"
     fill_in :address, with: "1703 11th Ave"
