@@ -13,6 +13,10 @@ class Favorite
     @contents << pet
   end
 
+  def remove_pet(pet_id)
+    @contents.delete(pet_id)
+  end
+
   def included_in_favorites?(pet_id)
     contents.include?(pet_id)
   end
