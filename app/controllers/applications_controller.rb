@@ -9,13 +9,18 @@ class ApplicationsController < ApplicationController
 
   def create
     checked_pets = Pet.where(id: params[:favorites])
-    application = Application.create(application_params)
-    checked_pets.each do |pet|
-      pet.applications << application
-      favorites.remove_pet(pet.id)
+    application = Application.new(application_params)
+    if application.save
+      checked_pets.each do |pet|
+        pet.applications << application
+        favorites.remove_pet(pet.id)
+      end
+      redirect_to '/favorites'
+      flash[:success] = 'Your application has been submitted for the selected pets!'
+    else
+      flash[:error] = application.errors.full_messages.to_sentence
+      redirect_to '/applications/new'
     end
-    redirect_to '/favorites'
-    flash[:success] = 'Your application has been submitted for the selected pets!'
   end
 
   private
