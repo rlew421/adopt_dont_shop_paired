@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
     @favorited_pets = pet_favorites.map do |pet_id|
       Pet.find(pet_id)
     end
+    @pets_applied_for = Pet.all.select{|pet| !pet.applications.empty?}
   end
 
   def update

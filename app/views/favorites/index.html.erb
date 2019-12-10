@@ -14,4 +14,11 @@
   <% else %>
     <p>You have no favorited pets.</p>
   <% end %>
+
+  <h1>Pets Applied For</h1>
+  <% @pets_applied_for.each do |pet| %>
+  <section id= 'applied_pets-<%=pet.id%>'>
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+  </section>
+  <% end %>
 </center>

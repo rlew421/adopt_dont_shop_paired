@@ -54,10 +54,6 @@ RSpec.describe "when I visit my favorites page" do
 
     expect(page).to have_content "Your application has been submitted for the selected pets!"
     expect(current_path).to eq('/favorites')
-    expect(page).to_not have_content(pet_1.name)
-    expect(page).to_not have_css("img[src*='#{pet_1.image}']")
-    expect(page).to_not have_content(pet_2.name)
-    expect(page).to_not have_css("img[src*='#{pet_2.image}']")
     expect(page).to have_content(pet_3.name)
     expect(page).to have_css("img[src*='#{pet_3.image}']")
   end
