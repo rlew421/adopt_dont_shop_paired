@@ -1,12 +1,19 @@
 <h1>Application Details</h1><br/>
 
 
-<section id= 'application_contents-<%=@application_details.id%>'>
-  <p>Name: <%= @application_details.name %></p><br/>
-  <p>Address: <%= @application_details.address %></p><br/>
-  <p>City: <%= @application_details.city %></p><br/>
-  <p>State: <%= @application_details.state %></p><br/>
-  <p>Zip Code: <%= @application_details.zip %></p><br/>
-  <p>Phone Number: <%= @application_details.phone_number %></p><br/>
-  <p>Description: <%= @application_details.description %></p><br/>
+<section id= 'application_contents-<%=@application.id%>'>
+  <p>Name: <%= @application.name %></p><br/>
+  <p>Address: <%= @application.address %></p><br/>
+  <p>City: <%= @application.city %></p><br/>
+  <p>State: <%= @application.state %></p><br/>
+  <p>Zip Code: <%= @application.zip %></p><br/>
+  <p>Phone Number: <%= @application.phone_number %></p><br/>
+  <p>Description: <%= @application.description %></p><br/>
 </section>
+
+<% @application.pets.each do |pet| %>
+  <section id= 'pets_applied_for-<%=pet.id%>'>
+  <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+  <p><%= link_to "Approve Application For #{pet.name}", "/applications/#{@application.id}/pets/#{pet.id}/approve" %></p>
+  </section>
+<% end %>
