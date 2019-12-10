@@ -1,0 +1,11 @@
+<h1>Applications for <%= @pet.name %></h1>
+
+<% if !@pet.applications.empty? %>
+  <% @pet.applications.each do |application| %>
+  <section id= 'application-<%=application.id%>'>
+    <p><%= link_to "#{application.name}", "/applications/#{application.id}" %></p>
+  </section>
+  <% end %>
+<% else %>
+  <p>No one has applied for this pet!</p>
+<% end %>
