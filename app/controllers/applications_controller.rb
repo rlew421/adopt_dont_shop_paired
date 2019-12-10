@@ -8,7 +8,9 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+    @application_details = Application.find(params[:application_id])
   end
+
   def create
     checked_pets = Pet.where(id: params[:favorites])
     application = Application.new(application_params)
