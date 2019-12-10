@@ -8,7 +8,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application_details = Application.find(params[:application_id])
+    @application = Application.find(params[:application_id])
   end
 
   def create
@@ -25,6 +25,15 @@ class ApplicationsController < ApplicationController
       flash[:error] = application.errors.full_messages.to_sentence
       redirect_to '/applications/new'
     end
+  end
+
+  def update_status
+    pet = Pet.find(params[:pet_id])
+    application = Application.find(params[:application_id])
+    approved = ApplicationPet.where(pet_id: pet.id, application_id: application.id).first
+    pet.update_column(:adoptable?, false)
+    approved.update_column(:approved?, true)
+    redirect_to "/pets/#{pet.id}"
   end
 
   private
