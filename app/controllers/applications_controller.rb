@@ -31,9 +31,14 @@ class ApplicationsController < ApplicationController
     pet = Pet.find(params[:pet_id])
     application = Application.find(params[:application_id])
     approved = ApplicationPet.where(pet_id: pet.id, application_id: application.id).first
-    pet.update_column(:adoptable?, false)
-    approved.update_column(:approved?, true)
-    redirect_to "/pets/#{pet.id}"
+    if request.env['PATH_INFO'] == "/applications/#{application.id}/pets/#{pet.id}/approve"
+      pet.update_column(:adoptable?, false)
+      approved.update_column(:approved?, true)
+      redirect_to "/pets/#{pet.id}"
+    else request.env['PATH_INFO'] == "/applications/#{application.id}/pets/#{pet.id}/revoke"
+      pet.update_column(:adoptable?, true)
+      redirect_to "/applications/#{application.id}"
+    end
   end
 
   private
