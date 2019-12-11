@@ -20,6 +20,7 @@ class PetsController < ApplicationController
     shelter = Shelter.find(params[:shelter_id])
     pet = Pet.new(pet_params.merge(shelter_id: shelter.id))
     if pet.save
+      flash[:success] = "#{pet.name} has been successfully added!"
       redirect_to "/shelters/#{shelter.id}/pets"
     else
       flash[:error] = pet.errors.full_messages.to_sentence
