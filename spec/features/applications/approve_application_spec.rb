@@ -64,4 +64,52 @@ RSpec.describe "When I visit an application's show page" do
     expect(current_path).to eq("/applications/#{application_1.id}")
     end
   end
+
+  describe "Every application that has been approved has a link next to it to unapprove that application" do
+    it "When I click the link to unapprove the application the pet's status changes to adoptable and that pet is not on hold anymroe" do
+      shelter_1 = Shelter.create!(name: "Denver Dog Shelter", address: "7893 Colfax", city: "Denver", state: "CO", zip: 80209)
+      pet_1 = shelter_1.pets.create!( image: "https://i.pinimg.com/564x/59/71/31/5971314eb28926a1ccc298396f099189.jpg",
+                                      name: 'Simba',
+                                      description: "Pet 1 description",
+                                      approximate_age: 5,
+                                      sex: 'Male')
+
+      application_1 = pet_1.applications.create!( name: "James Earl Jones",
+                                                address: "1703 11th Ave",
+                                                city:"Boulder" ,
+                                                state: "CO",
+                                                zip: 80423,
+                                                phone_number: 3036077527,
+                                                description: "I need an adventure buddy")
+
+      application_2 = pet_1.applications.create!( name: "John Doe",
+                                                address: "9827 Denver Drive",
+                                                city:"Denver" ,
+                                                state: "CO",
+                                                zip: 80204,
+                                                phone_number: 2938193029,
+                                                description: "Looking for a furry friend")
+
+      visit "/applications/#{application_1.id}"
+      within "#pets_applied_for-#{pet_1.id}" do
+        click_link "Approve Application For #{pet_1.name}"
+      end
+
+      visit "/applications/#{application_1.id}"
+      within "#pets_applied_for-#{pet_1.id}" do
+        expect(page).to_not have_link("Approve Application For #{pet_1.name}")
+        click_link "Unapprove Application For #{pet_1.name}"
+      end
+
+      expect(current_path).to eq(visit "/applications/#{application_1.id}")
+      within "#pets_applied_for-#{pet_1.id}" do
+        expect(page).to_not have_link("Unapprove Application For #{pet_1.name}")
+        expect(page).to have_link("Approve Application For #{pet_1.name}")
+      end
+
+      visit "/pets/#{pet_1.id}"
+      expect(page).to have_content("Status: Adoptable")
+      expect(page).to_not have_content("On hold for James Earl Jones")
+    end
+  end
 end
