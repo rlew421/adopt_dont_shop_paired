@@ -17,15 +17,13 @@ harry = boulder_bulldog_rescue.pets.create(image: "https://i.pinimg.com/564x/aa/
   name: 'Harry',
   description: "The most beautiful underbite you've ever seen!",
   approximate_age: 6,
-  sex: 'Male',
-  adoptable?: false)
+  sex: 'Male')
 
 tater_tot = boulder_bulldog_rescue.pets.create(image: "https://i.pinimg.com/564x/ac/4c/3f/ac4c3f848136a5f59b973943c113723f.jpg",
     name: 'Tater Tot',
     description: "The cutest potato!",
     approximate_age: 8,
-    sex: 'Female',
-    adoptable?: false)
+    sex: 'Female')
 
 henri = boulder_bulldog_rescue.pets.create(image: "https://i.pinimg.com/564x/59/71/31/5971314eb28926a1ccc298396f099189.jpg",
                     name: 'Henri',
@@ -49,8 +47,7 @@ carl = fantastic_beasts.pets.create(image: "https://miro.medium.com/max/2560/1*T
                     name: 'Carl',
                     description: "Is he a rodent? Is he a fish? We're honestly not sure. Adopt him today!",
                     approximate_age: 2,
-                    sex: 'Male',
-                    adoptable?: false)
+                    sex: 'Male')
 
 stitch = fantastic_beasts.pets.create(image: "https://imgix.bustle.com/uploads/image/2018/10/3/b32820ab-b6ab-402d-aaec-ef470d63f827-lilo-stitch.jpg?w=1020&h=574&fit=crop&crop=faces&auto=format&q=70",
                     name: 'Stitch',
@@ -62,8 +59,7 @@ fred = fantastic_beasts.pets.create(image: "https://images-na.ssl-images-amazon.
                     name: 'Fred',
                     description: "Sedentary, sedimentary, and perfectly low-maintenance. Safe to say he won't run away!",
                     approximate_age: 5700,
-                    sex: 'Male',
-                    adoptable?: false)
+                    sex: 'Male')
 
 # Reviews
 review_1 = boulder_bulldog_rescue.reviews.create(title: "The cutest bulldogs!", content: "This shelter takes in a lot of surrenders, and they take care of their bulldogs well!", rating: 5)

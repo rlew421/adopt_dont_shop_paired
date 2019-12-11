@@ -17,4 +17,9 @@ class Pet < ApplicationRecord
     pet = Pet.find(pet_id)
     pet.application_pets.where(approved?: true).first.application.name
   end
+
+  def applicant_id(pet_id)
+    pet = Pet.find(pet_id)
+    pet.application_pets.where(approved?: true).first.application.id
+  end
 end
