@@ -6,7 +6,9 @@
     <p><%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
     <p><%= link_to "View #{@shelter.name}'s Pets", "/shelters/#{@shelter.id}/pets" %></p>
     <p><%= link_to "Edit #{@shelter.name}", "/shelters/#{@shelter.id}/edit" %></p>
+    <% if !@shelter.any_pending_pets? %>
     <p><%= link_to "Delete #{@shelter.name}", "/shelters/#{@shelter.id}", method: :delete %></p>
+    <% end %>
   </section>
 
   <h2>Reviews for <%= @shelter.name %></h2>
