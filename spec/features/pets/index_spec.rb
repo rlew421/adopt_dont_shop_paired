@@ -150,14 +150,6 @@ RSpec.describe "pets index page" do
       end
       expect(current_path).to eq("/pets")
       expect(page).to_not have_content(@alfred.name)
-
-      visit '/pets'
-
-      within "#pet-#{@botox.id}" do
-        click_link "Delete"
-      end
-      expect(current_path).to eq("/pets")
-      expect(page).to_not have_content(@botox.name)
     end
 
     it "I see adoptable pets listed before pets whose adoption status is pending" do

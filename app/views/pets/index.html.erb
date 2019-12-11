@@ -23,7 +23,9 @@
             <p>Current Shelter: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></p>
             <p><%= link_to "Edit", "/pets/#{pet.id}/edit" %> <%= pet.name %></p>
           <% end %>
-          <p><%= link_to "Delete", "/pets/#{pet.id}", method: :delete %> <%= pet.name %></p>
+          <% if pet.adoptable? %>
+            <p><%= link_to "Delete", "/pets/#{pet.id}", method: :delete %> <%= pet.name %></p>
+          <% end %>
         </section>
       </section>
     <% end %>
