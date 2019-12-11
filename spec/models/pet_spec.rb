@@ -101,5 +101,48 @@ describe Pet, type: :model do
 
       expect(pet_1.applicant_name(pet_1.id)).to eq("James Earl Jones")
     end
+
+    it "#applicant_id" do
+      shelter_1 = Shelter.create!(name: "Denver Dog Shelter", address: "7893 Colfax", city: "Denver", state: "CO", zip: 80209)
+      pet_1 = shelter_1.pets.create!( image: "https://i.pinimg.com/564x/59/71/31/5971314eb28926a1ccc298396f099189.jpg",
+                                      name: 'Simba',
+                                      description: "Pet 1 description",
+                                      approximate_age: 5,
+                                      sex: 'Male')
+      pet_2 = shelter_1.pets.create!( image: "https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.pinimg.com%2F564x%2Fc4%2F3e%2F7f%2Fc43e7f6a45aba8790a8c47d3a5d62ee8.jpg",
+                                      name: 'Pet 2',
+                                      description: "Pet 2 desc",
+                                      approximate_age: 3,
+                                      sex: 'Female')
+      application_1 = pet_1.applications.create!( name: "James Earl Jones",
+                                                address: "1703 11th Ave",
+                                                city:"Boulder" ,
+                                                state: "CO",
+                                                zip: 80423,
+                                                phone_number: 3036077527,
+                                                description: "I need an adventure buddy")
+
+      application_2 = pet_1.applications.create!( name: "John Doe",
+                                                address: "9827 Denver Drive",
+                                                city:"Denver" ,
+                                                state: "CO",
+                                                zip: 80204,
+                                                phone_number: 2938193029,
+                                                description: "Looking for a furry friend")
+
+      application_3 = pet_2.applications.create!( name: "Jane Doe",
+                                                address: "9827 Denver Drive",
+                                                city:"Denver" ,
+                                                state: "CO",
+                                                zip: 80204,
+                                                phone_number: 2938193029,
+                                                description: "Looking for a furry friend")
+
+      application_1.pets << pet_2
+
+      approved = ApplicationPet.create(pet_id: pet_1.id, application_id: application_1.id, approved?: true)
+
+      expect(pet_1.applicant_id(pet_1.id)).to eq(application_1.id)
+    end
   end
 end
