@@ -59,6 +59,9 @@ RSpec.describe "When I visit an application's show page" do
     expect(current_path).to eq("/pets/#{pet_1.id}")
     expect(page).to have_content("Status: Adoption Pending")
     expect(page).to have_content("On hold for #{application_1.name}")
+
+    click_link "#{application_1.name}"
+    expect(current_path).to eq("/applications/#{application_1.id}")
     end
   end
 end
