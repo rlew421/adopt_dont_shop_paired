@@ -101,7 +101,7 @@ RSpec.describe "When I visit an application's show page" do
         click_link "Unapprove Application For #{pet_1.name}"
       end
 
-      expect(current_path).to eq(visit "/applications/#{application_1.id}")
+      expect(current_path).to eq("/applications/#{application_1.id}")
       within "#pets_applied_for-#{pet_1.id}" do
         expect(page).to_not have_link("Unapprove Application For #{pet_1.name}")
         expect(page).to have_link("Approve Application For #{pet_1.name}")
