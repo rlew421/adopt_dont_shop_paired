@@ -6,4 +6,12 @@ class Shelter < ApplicationRecord
   def pet_count
     pets.count
   end
+
+  def average_rating
+    reviews.average(:rating).to_f
+  end
+
+  def application_count
+    pets.joins(:application_pets).count
+  end
 end
