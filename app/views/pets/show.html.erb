@@ -8,7 +8,7 @@
       <% if @pet.adoptable? %>
         <p>Status: Adoptable </p>
       <% else %>
-        <p>Status: Adoption Pending </p>
+        <p>Status: Adoption Pending</p>
       <% end %>
     <p><%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %></p>
     <p><%= link_to "Delete #{@pet.name}", "/pets/#{@pet.id}", method: :delete %></p>
