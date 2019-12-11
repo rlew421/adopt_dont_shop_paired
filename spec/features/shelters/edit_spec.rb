@@ -55,4 +55,19 @@ RSpec.describe "when I visit a shelter show page" do
     expect(page).to have_content("UK")
     expect(page).to have_content("80205")
   end
+
+  it "I receive a flash message telling me to fill in missing fields when I leave a field(s) blank and click submit" do
+    visit '/shelters'
+    click_link "Edit #{@shelter_1.name}"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+    fill_in :name, with: ""
+    fill_in :address, with: ""
+    fill_in :city, with: "Houston"
+    fill_in :zip, with: 77054
+    click_button "Update #{@shelter_1.name}"
+    
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+    expect(page).to have_content "Name can't be blank and Address can't be blank"
+  end
 end
