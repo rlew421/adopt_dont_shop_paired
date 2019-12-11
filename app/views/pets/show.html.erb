@@ -12,7 +12,9 @@
         <p>On hold for <%= link_to @pet.applicant_name(@pet.id), "/applications/#{@pet.applicant_id(@pet.id)}" %></p>
       <% end %>
     <p><%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %></p>
-    <p><%= link_to "Delete #{@pet.name}", "/pets/#{@pet.id}", method: :delete %></p>
+    <% if @pet.adoptable? %>
+      <p><%= link_to "Delete #{@pet.name}", "/pets/#{@pet.id}", method: :delete %></p>
+    <% end %>
     <% if favorites.included_in_favorites?(@pet.id) %>
       <p><%= button_to "Remove #{@pet.name} from Favorites", "/favorites/#{@pet.id}", method: :delete %></p>
     <% else %>
