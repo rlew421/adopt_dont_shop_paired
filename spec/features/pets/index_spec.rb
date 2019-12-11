@@ -113,14 +113,6 @@ RSpec.describe "pets index page" do
       end
 
       expect(current_path).to eq("/pets/#{@alfred.id}")
-
-      visit '/pets'
-
-      within "#pet-#{@botox.id}" do
-        click_link "#{@botox.name}"
-      end
-
-      expect(current_path).to eq("/pets/#{@botox.id}")
     end
 
     it "I see an edit link next to each pet that allows me to edit that pet's information through the edit form" do
