@@ -9,8 +9,14 @@ RSpec.describe "when I visit a pet show page" do
       approximate_age: 5,
       sex: 'Male')
 
-      visit "/pets/#{@henri.id}"
-      click_link "Edit #{@henri.name}"
+    @image = "https://i.pinimg.com/564x/4d/62/b3/4d62b31fe8fc406ef669d6e33cad423f.jpg"
+    @name = "Porkchop"
+    @description = "I'm a recent surrender who's ready to be your movie watching companion!"
+    @approximate_age = 2
+    @sex = "Female"
+
+    visit "/pets/#{@henri.id}"
+    click_link "Edit #{@henri.name}"
   end
 
   it "I can see the preopulated fields for that pet" do
@@ -31,17 +37,11 @@ RSpec.describe "when I visit a pet show page" do
 
     expect(current_path).to eq("/pets/#{@henri.id}/edit")
 
-    image = "https://i.pinimg.com/564x/4d/62/b3/4d62b31fe8fc406ef669d6e33cad423f.jpg"
-    name = "Porkchop"
-    description = "I'm a recent surrender who's ready to be your movie watching companion!"
-    approximate_age = 2
-    sex = "Female"
-
-    fill_in :image, with: image
-    fill_in :name, with: name
-    fill_in :description, with: description
-    fill_in :approximate_age, with: approximate_age
-    fill_in :sex, with: sex
+    fill_in :image, with: @image
+    fill_in :name, with: @name
+    fill_in :description, with: @description
+    fill_in :approximate_age, with: @approximate_age
+    fill_in :sex, with: @sex
     click_button "Update Pet"
 
     edited_pet = Pet.last
@@ -76,17 +76,13 @@ RSpec.describe "when I visit a pet show page" do
     visit "/pets/#{@henri.id}"
     click_link "Edit #{@henri.name}"
 
-    image = "https://i.pinimg.com/564x/4d/62/b3/4d62b31fe8fc406ef669d6e33cad423f.jpg"
     name = ""
-    description = "I'm a recent surrender who's ready to be your movie watching companion!"
-    approximate_age = 2
-    sex = "Female"
 
-    fill_in :image, with: image
+    fill_in :image, with: @image
     fill_in :name, with: name
-    fill_in :description, with: description
-    fill_in :approximate_age, with: approximate_age
-    fill_in :sex, with: sex
+    fill_in :description, with: @description
+    fill_in :approximate_age, with: @approximate_age
+    fill_in :sex, with: @sex
     click_button "Update Pet"
 
     expect(page).to have_content("Name can't be blank")
