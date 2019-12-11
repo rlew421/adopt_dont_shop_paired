@@ -14,4 +14,11 @@ class Shelter < ApplicationRecord
   def application_count
     pets.joins(:application_pets).count
   end
+
+  def any_pending_pets?
+    pending = self.pets.where(adoptable?: false)
+    return false if pending.length == 0
+  else
+    return true
+  end
 end
