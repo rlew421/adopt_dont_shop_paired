@@ -36,10 +36,55 @@ describe Shelter, type: :model do
         description: "She snorts, she farts, she's sweeter than French toast!",
         approximate_age: 4,
         sex: 'Female')
+
+      @review_1 = @boulder_bulldog_rescue.reviews.create(title: "The cutest bulldogs!", content: "This shelter takes in a lot of surrenders, and they take care of their bulldogs well!", rating: 5)
+      @review_2 = @boulder_bulldog_rescue.reviews.create(title: "Bulldog Experts", content: "They know how to take care of this breed.", rating: 4)
+      @review_3 = @boulder_bulldog_rescue.reviews.create(title: "Interesting...", content: "They have a wide variety of pets, but we're not sure if they're all safe or legal to own.", rating: 2)
+
+      @application_1 = @pet_1.applications.create!( name: "James Earl Jones",
+                                                address: "1703 11th Ave",
+                                                city:"Boulder" ,
+                                                state: "CO",
+                                                zip: 80423,
+                                                phone_number: 3036077527,
+                                                description: "I need an adventure buddy")
+
+      @application_2 = @pet_1.applications.create!( name: "John Doe",
+                                                address: "1703 11th Ave",
+                                                city:"Boulder" ,
+                                                state: "CO",
+                                                zip: 80423,
+                                                phone_number: 3036077527,
+                                                description: "I need a furry friend")
+
+      @application_3 = @pet_3.applications.create!( name: "John Doe",
+                                                address: "1703 11th Ave",
+                                                city:"Boulder" ,
+                                                state: "CO",
+                                                zip: 80423,
+                                                phone_number: 3036077527,
+                                                description: "I need a furry friend")
+
+      @application_4 = @pet_2.applications.create!( name: "John Doe",
+                                                address: "1703 11th Ave",
+                                                city:"Boulder" ,
+                                                state: "CO",
+                                                zip: 80423,
+                                                phone_number: 3036077527,
+                                                description: "I need a furry friend")
     end
 
     it ".pet_count" do
       expect(@boulder_bulldog_rescue.pet_count).to eq(2)
+    end
+
+    it ".average_rating" do
+      expect(@boulder_bulldog_rescue.average_rating).to eq(3.66666666666667)
+    end
+
+    it ".application_count" do
+      expect(@boulder_bulldog_rescue.application_count).to eq(3)
+      expect(@howlz_n_jowlz.application_count).to eq(1)
     end
   end
 end
