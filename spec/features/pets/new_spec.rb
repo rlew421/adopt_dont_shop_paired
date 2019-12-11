@@ -26,6 +26,7 @@ RSpec.describe "shelter pet creation" do
       new_pet = Pet.last
 
       expect(current_path).to eq("/shelters/#{boulder_bulldog_rescue.id}/pets")
+      expect(page).to have_content("#{new_pet.name} has been successfully added!")
       expect(new_pet.image).to eq(image)
       expect(new_pet.name).to eq(name)
       expect(new_pet.description).to eq(description)
@@ -40,12 +41,7 @@ RSpec.describe "shelter pet creation" do
         expect(page).to have_content(new_pet.sex)
       end
     end
-  # User Story 33, Flash Message for Pet Create and Update
-  #
-  # As a visitor
-  # When I am updating or creating a pet
-  # If I try to submit the form with incomplete information
-  # I see a flash message indicating which field(s) I am missing
+
     it "When I am creating a pet and fail to fill in all fields I get a flash
       message telling me which fields to fill in" do
 
@@ -65,7 +61,7 @@ RSpec.describe "shelter pet creation" do
       fill_in :approximate_age, with: approximate_age
       click_button "Create New Adoptable Pet"
 
-      expect(page).to have_content "Sex can't be blank"
+      expect(page).to have_content("Sex can't be blank")
       expect(current_path).to eq("/shelters/#{boulder_bulldog_rescue.id}/pets/new")
     end
   end
