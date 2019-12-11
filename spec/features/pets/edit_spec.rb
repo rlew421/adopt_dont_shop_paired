@@ -61,6 +61,7 @@ RSpec.describe "when I visit a pet show page" do
     click_button "Update Pet"
 
     expect(current_path).to eq("/pets/#{@henri.id}")
+    expect(page).to have_content("Lockjaw Updated Successfully")
     expect(page).to have_css("img[src*='#{edited_pet.image}']")
     expect(page).to have_content("Lockjaw")
     expect(page).to_not have_content("Porkchop")
