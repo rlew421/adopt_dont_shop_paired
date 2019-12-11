@@ -9,6 +9,7 @@
         <p>Status: Adoptable </p>
       <% else %>
         <p>Status: Adoption Pending</p>
+        <p>On hold for <%= @pet.applicant_name(@pet.id) %></p>
       <% end %>
     <p><%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %></p>
     <p><%= link_to "Delete #{@pet.name}", "/pets/#{@pet.id}", method: :delete %></p>

@@ -17,16 +17,33 @@ RSpec.describe "When I visit an application's show page" do
                                     description: "Pet 2 desc",
                                     approximate_age: 3,
                                     sex: 'Female')
-    application = pet_1.applications.create!( name: "James Earl Jones",
+    application_1 = pet_1.applications.create!( name: "James Earl Jones",
                                               address: "1703 11th Ave",
                                               city:"Boulder" ,
                                               state: "CO",
                                               zip: 80423,
                                               phone_number: 3036077527,
                                               description: "I need an adventure buddy")
-    application.pets << pet_2
 
-    visit "/applications/#{application.id}"
+    application_2 = pet_1.applications.create!( name: "John Doe",
+                                              address: "9827 Denver Drive",
+                                              city:"Denver" ,
+                                              state: "CO",
+                                              zip: 80204,
+                                              phone_number: 2938193029,
+                                              description: "Looking for a furry friend")
+
+    application_3 = pet_2.applications.create!( name: "Jane Doe",
+                                              address: "9827 Denver Drive",
+                                              city:"Denver" ,
+                                              state: "CO",
+                                              zip: 80204,
+                                              phone_number: 2938193029,
+                                              description: "Looking for a furry friend")
+
+    application_1.pets << pet_2
+
+    visit "/applications/#{application_1.id}"
 
     within "#pets_applied_for-#{pet_1.id}" do
       expect(page).to have_link("Approve Application For #{pet_1.name}")
@@ -41,7 +58,7 @@ RSpec.describe "When I visit an application's show page" do
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
     expect(page).to have_content("Status: Adoption Pending")
-    # expect(page).to have_content("On hold for #{application.name}")
+    expect(page).to have_content("On hold for #{application_1.name}")
     end
   end
 end
