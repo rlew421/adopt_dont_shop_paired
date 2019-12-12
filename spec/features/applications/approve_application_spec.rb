@@ -119,4 +119,18 @@ RSpec.describe "When I visit an application's show page" do
       expect(page).to have_content("On hold for #{@application_1.name}")
     end
   end
+
+  describe "When a pet has more than one application made for them and one has already been approved for them" do
+    it "I cannot approve any other applictions for that pet but all other applications still remain on file" do
+      visit "/applications/#{@application_1.id}"
+      within "#pets_applied_for-#{@pet_1.id}" do
+        click_link "Approve Application For #{@pet_1.name}"
+      end
+
+      visit "/applications/#{@application_2.id}"
+      within "#pets_applied_for-#{@pet_1.id}" do
+        expect(page).to_not have_link("Approve Application For #{@pet_1.name}")
+      end
+    end
+  end
 end
