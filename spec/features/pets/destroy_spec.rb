@@ -58,4 +58,36 @@ RSpec.describe "when I visit a pet show page" do
     visit "/shelters/#{@boulder_bulldog_rescue.id}/pets/#{pet.id}"
     expect(page).to_not have_link("Delete")
   end
+
+  it "When I delete a pet that pet is removed from favorites" do
+    shelter = Shelter.create!(name: "Boulder Bulldog Rescue", address: "2712 Slobber Circle", city: "Boulder", state: "CO", zip: 80205)
+    pet = @boulder_bulldog_rescue.pets.create!(image: "https://scontent-den4-1.xx.fbcdn.net/v/t1.0-9/69959835_377201229643201_4012713976726028288_o.jpg?_nc_cat=109&_nc_oc=AQlSsxr7ocJQdJ_USDptWwC1yYaFJvmQcqU1h1os4Kf4OXE8xOGfJWdUvVwrGyxSXYQ&_nc_ht=scontent-den4-1.xx&oh=b38ee308df03b9d760c5e720905eda0b&oe=5E4D6B16",
+                        name: 'Paul Spudd',
+                        description: "His face is squishy!",
+                        approximate_age: 4,
+                        sex: 'Male')
+
+    visit "/pets/#{pet.id}"
+
+    click_button "Add #{pet.name} to Favorites"
+    visit '/favorites'
+
+    within "#favorited_pet-#{pet.id}" do
+      expect(page).to have_content(pet.name)
+    end
+
+    within 'nav' do
+      expect(page).to have_content("Favorites: 1")
+    end
+
+    visit "/pets/#{pet.id}"
+    click_link "Delete #{pet.name}"
+
+    within 'nav' do
+      expect(page).to have_content("Favorites: 0")
+    end
+
+    visit '/favorites'
+    expect(page).to_not have_content(pet.name)
+  end
 end
